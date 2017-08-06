@@ -11,10 +11,17 @@ Controller will allow execution of Python scripts from a remote location by chec
 The only database set up required is as follows:
   1. Create Table called "programs"
   2. Create Three Columns:
-    --*program(varchar(25))
-    --*runorkill(boolean)
-    --*changed(boolean)
-    
+  
+| program | runorkill | changed |
+| --- | --- | --- |
+| test.py | True | True |
+
+program is set up as a varchar(25)
+
+runorkill is set up as a boolean
+
+changed is set up as a boolean
+
 ************
 * Django Setup 
 ************
