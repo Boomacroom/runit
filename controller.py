@@ -4,8 +4,8 @@ from subprocess import STDOUT, check_output
 def checkDB():
     try:
         print('Connecting to Database:')
-        connect_str = "dbname='amazon' user='postgres' host='dealfinder.ga' " + \
-                      "password='Packard84' port='5433'"
+        connect_str = "dbname='DATABASE' user='postgres' host='HostNameorIP' " + \
+                      "password='PASSWORD' port='5432'"
         conn = psycopg2.connect(connect_str)
         cursor = conn.cursor()
         execstr = 'SELECT program, runorkill, changed FROM programs;'
