@@ -20,13 +20,17 @@ def checkDB():
             programName = row[0]
             run = row[1]
             changed = row[2]
-            print(programName, run)
+            #print(programName, run)
 
             if run == True and changed == True:
                 print("Running {}...".format(programName))
                 cmd = shlex.split("python {}".format(programName))
                 output = check_output(cmd, stderr=STDOUT)
-                print(output)
+                #Sets Changed back to FALSE to and calls CheckDB to keep the script running
+                execstr = 'UPDATE programs SET changed=FALSE;'
+                cursor.execute(execstr)
+                conn.commit()
+                checkDB()
             elif run == True and changed == False:
                 print('No Changes dectected, waiting 60 Seconds to check again..')
             elif run == False:
@@ -42,17 +46,16 @@ def main():
     operatingSystem = platform.system()
 
     # Detect what OS we are running on:
-    if operatingSystem == "Windows":
-        print("Not implemented for Windows OS yet.. Although \
-the current code will also work for Windows")
-        pass
-    #TODO: This needs to be changed to Linux, dev on Windows so it's just for testing
-    elif operatingSystem == "Linux":
+    if operatingSystem == "Linux":
         starttime = time.time()
         while True:
             print ("Detecting Changes..")
             checkDB()
             time.sleep(60.0 - ((time.time() - starttime) % 60.0))
 
+    elif operatingSystem == "Windows":
+        print("Not implemented for Windows OS yet.. Although \
+the current code will also work for Windows")
+        pass
 if __name__ == "__main__":
     main()
