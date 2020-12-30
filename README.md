@@ -1,8 +1,8 @@
 # runit
 ## Controller
 
-Controller will allow execution of Python scripts from a remote location by checking
- for an authorization from a database. This allows execution on the server from Django
+Controller will allow execution of Python scripts from a remote location behind a VPN by checking
+ for an authorization from the database. This allows execution on the server from Django
  PHP or any other means of updating a SQL database.
 
 ************
